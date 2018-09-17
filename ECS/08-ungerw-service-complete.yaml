@@ -41,6 +41,11 @@ Parameters:
     ContainerPort:
         Description: The container port
         Type: Number
+        Default: 8080 
+        
+    HostPort:
+        Description: The host port
+        Type: Number
         Default: 8080
 
 Resources:
@@ -69,6 +74,7 @@ Resources:
                   Memory: 700
                   PortMappings:
                     - ContainerPort: !Ref ContainerPort
+                    - HostPort: !Ref HostPort
                   LogConfiguration:
                     LogDriver: awslogs
                     Options:
