@@ -1,5 +1,5 @@
 Description: >
-    example service (spring boot hello world)
+    example flask service
 # by wolfgang unger 4.2018
 
 Parameters: 
@@ -15,17 +15,17 @@ Parameters:
     DesiredCount: 
         Description: How many instances of this task should we run across our cluster?
         Type: Number
-        Default: 2
+        Default: 1
         
     MaxCount:
         Description: Maximum number of instances of this task we can run across our cluster
         Type: Number
-        Default: 3
+        Default: 2
         
     Path: 
         Description: The path to register with the Application Load Balancer
         Type: String
-        Default: /spring-docker/hello
+        Default: /
         
     ServiceName:
         Description: The name of the service
@@ -35,16 +35,10 @@ Parameters:
     ImageName:
         Description: The image name of the task definition
         Type: String
-        Default: 016973021151.dkr.ecr.us-west-1.amazonaws.com/ecs-example-repository:spring-boot
-        #Default: 275396840892.dkr.ecr.us-east-1.amazonaws.com/ecs-refarch-cloudformation/product-service:1.0.0
+        Default: 048603927394.dkr.ecr.us-east-2.amazonaws.com/scoresheet-repository:latest
         
     ContainerPort:
         Description: The container port
-        Type: Number
-        Default: 8080 
-        
-    HostPort:
-        Description: The host port
         Type: Number
         Default: 8080
 
@@ -74,7 +68,6 @@ Resources:
                   Memory: 700
                   PortMappings:
                     - ContainerPort: !Ref ContainerPort
-                    - HostPort: !Ref HostPort
                   LogConfiguration:
                     LogDriver: awslogs
                     Options:
